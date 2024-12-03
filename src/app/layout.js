@@ -20,10 +20,15 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+      <body>
+        <h1>This is Navbar</h1>
+        <div className="flex gap-5">
+          <div>
+            <h1>sidebar</h1>
+          </div>
+          <div>{children}</div>
+        </div>
+        <h1>This is Footer</h1>
       </body>
     </html>
   );

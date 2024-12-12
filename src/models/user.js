@@ -1,4 +1,3 @@
-const { default: Profile } = require("@/app/profile/page");
 const { Schema, default: mongoose, mongo } = require("mongoose");
 
 const userSchema = new Schema({
@@ -6,6 +5,7 @@ const userSchema = new Schema({
   email: {
     type: String,
     required: [true, "Email is Required!!!1"],
+    unique: true,
   },
   password: {
     type: String,

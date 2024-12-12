@@ -1,47 +1,91 @@
 import { connectDB } from "@/helper/db";
+import { User } from "@/models/user";
 import { NextResponse } from "next/server";
 
-connectDB();
-export function GET(request) {
-  const users = [
-    {
-      name: "sajid ali",
-      phone: "031313938",
-      course: "java",
-    },
-    {
-      name: "buqrat wali",
-      phone: "031313938",
-      course: "python",
-    },
-    {
-      name: "saqlain abbas",
-      phone: "031313938",
-      course: "nodejs",
-    },
-  ];
-  return NextResponse.json(users);
+export async function GET(request) {
+  try {
+    await connectDB(); // Ensure database connection
+
+    const users = await User.find().select("-password"); // Fetch all users
+    return NextResponse.json({
+      message: "Users retrieved successfully",
+      success: true,
+      data: users,
+    });
+  } catch (error) {
+    console.error("Error fetching users:", error.message);
+    return NextResponse.json({
+      message: "Failed to fetch users",
+      success: false,
+      error: error.message,
+    });
+  }
 }
 
-// post api
-export function POST(request) {
-  const body = request.body;
-  console.log(body);
-  console.log(request.method);
-  console.log(request.cookies);
-  return NextResponse.json({
-    message: "posting our data",
-  });
+export async function POST(request) {
+  try {
+    await connectDB(); // Ensure database connection
+
+    const { name, email, password, about, profileURL } = await request.json();
+
+    // Create new user object
+    const user = new User({
+      name,
+      email,
+      password,
+      about,
+      profileURL,
+    });
+
+    const createdUser = await user.save();
+    return NextResponse.json(
+      {
+        message: "User created successfully",
+        success: true,
+        data: createdUser,
+      },
+      { status: 201 }
+    );
+  } catch (error) {
+    console.error("Error creating user:", error.message);
+    return NextResponse.json({
+      message: "Failed to create user",
+      success: false,
+      error: error.message,
+    });
+  }
 }
 
-export function DELETE(request) {
-  console.log("delete api called");
-  return NextResponse.json(
-    {
-      message: "deleted !!",
-      status: true,
-    },
-    { status: 201, statusText: "changed text" }
-  );
+export async function DELETE(request) {
+  try {
+    console.log("DELETE API called");
+    // Placeholder: You can implement user deletion logic here
+    return NextResponse.json({
+      message: "Delete API not yet implemented",
+      success: false,
+    });
+  } catch (error) {
+    console.error("Error in DELETE API:", error.message);
+    return NextResponse.json({
+      message: "Failed to delete user",
+      success: false,
+    });
+  }
 }
-export function PUT() {}
+
+export async function PUT(request) {
+  try {
+    console.log("PUT API called");
+    // Placeholder: You can implement user update logic here
+    return NextResponse.json({
+      message: "PUT API not yet implemented",
+      success: false,
+    });
+  } catch (error) {
+    console.error("Error in PUT API:", error.message);
+    return NextResponse.json({
+      message: "Failed to update user",
+      success: false,
+    });
+  }
+}

@@ -55,8 +55,4 @@ export async function DELETE(request, { params }) {
       success: false,
     });
   }
-
-  return NextResponse.json({
-    message: "testing deleted",
-  });
 }

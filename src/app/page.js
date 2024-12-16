@@ -1,9 +1,11 @@
-import Image from "next/image";
+export const metadata = {
+  title: "Home: Work Manager",
+};
 
 export default function Home() {
   return (
     <>
-      <h1>next js</h1>
+      <h1>welcome to work manager</h1>
     </>
   );
 }

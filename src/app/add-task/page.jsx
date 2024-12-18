@@ -1,26 +1,43 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import loginSvg from "../../assets/login.svg";
+import { addTask } from "@/services/taskService";
+import { toast } from "react-toastify";
 
-// export const metadata = {
-//   title: "Add Task: Work Manager",
-// };
-
-const page = () => {
+const AddTask = () => {
   const [task, setTask] = useState({
     title: "",
-    content: "",
-    userId: "",
+    description: "",
+    userId: "675a8d797439d8ad9f60922f",
     status: "",
   });
 
-  const handleAddTask = (event) => {
+  const handleAddTask = async (event) => {
     event.preventDefault();
     console.log(task);
-  };
+    try {
+      const result = await addTask(task);
+      toast.success("Task Added Successfully", {
+        position: "top-center",
+      });
 
+      setTask({
+        title: "",
+        description: "",
+        userId: "675a8d797439d8ad9f60922f",
+        status: "none",
+      });
+    } catch (error) {
+      toast.error("Failed to Add Task!!", {
+        position: "top-center",
+      });
+    }
+  };
+  useEffect(() => {
+    document.title = "Add Task: Work Manager";
+  }, []);
   return (
     <>
       <div className="grid grid-cols-12 mt-2 justify-center">
@@ -70,10 +87,10 @@ const page = () => {
                 onChange={(event) => {
                   setTask({
                     ...task,
-                    content: event.target.value,
+                    description: event.target.value,
                   });
                 }}
-                value={task.content}
+                value={task.description}
               />
             </div>
 
@@ -129,4 +146,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default AddTask;

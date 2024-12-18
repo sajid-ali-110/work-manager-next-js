@@ -31,7 +31,7 @@ const CustomNavbar = () => {
               <a href="#">login</a>
             </li>
             <li>
-              <a href="#">signup</a>
+              <Link href={"/signup"}>signup</Link>
             </li>
           </ul>
         </div>

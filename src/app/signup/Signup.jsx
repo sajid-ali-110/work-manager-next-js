@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import SignupBanner from "../../assets/signup.svg";
 import { toast } from "react-toastify";
+import { singUp } from "@/services/userService";
 
 const Signup = () => {
   const [data, setData] = useState({
@@ -14,7 +15,7 @@ const Signup = () => {
       "https://media.istockphoto.com/id/1327592449/vector/default-avatar-photo-placeholder-icon-grey-profile-picture-business-man.jpg?s=612x612&w=0&k=20&c=yqoos7g9jmufJhfkbQsk-mdhKEsih6Di4WZ66t_ib7I=",
   });
 
-  const doSignup = (e) => {
+  const doSignup = async (e) => {
     e.preventDefault();
     console.log(data);
     if (data.name.trim() === "" || data.name == null) {
@@ -37,6 +38,19 @@ const Signup = () => {
       });
 
       return;
+    }
+
+    try {
+      const result = await singUp(data);
+      console.log(result);
+      toast.success("User is registered!!", {
+        position: "top-center",
+      });
+    } catch (error) {
+      console.log(error);
+      toast.error("Signup error", {
+        position: "top-center",
+      });
     }
   };
 

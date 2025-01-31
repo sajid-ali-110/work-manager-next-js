@@ -48,11 +48,15 @@ export async function POST(request) {
     );
   } catch (error) {
     console.error("Error creating user:", error.message);
-    return NextResponse.json({
-      message: "Failed to create user",
-      success: false,
-      error: error.message,
-    });
+    return NextResponse.json(
+      {
+        message: "Failed to create user",
+        success: false,
+      },
+      {
+        status: 500,
+      }
+    );
   }
 }
 

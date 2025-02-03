@@ -113,6 +113,8 @@ const Signup = () => {
                 value={data.email}
               />
             </div>
+
+            {/* password */}
             <div className="mt-3">
               <label
                 htmlFor="password"

@@ -178,6 +178,8 @@ const Signup = () => {
               </button>
             </div>
             {/* {JSON.stringify(data)} */}
+            {/* {JSON.stringify(data)} */}
+            {/* {JSON.stringify(data)} */}
           </form>
         </div>
       </div>

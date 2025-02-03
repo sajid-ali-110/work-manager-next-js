@@ -122,6 +122,8 @@ const Signup = () => {
               >
                 Password
               </label>
+              {/* password */}
+
               <input
                 type="password"
                 placeholder="Enter Yor password"
@@ -144,6 +146,8 @@ const Signup = () => {
               >
                 About
               </label>
+              {/* password */}
+
               <textarea
                 type="text"
                 placeholder="Enter About Your Self"
@@ -161,6 +165,8 @@ const Signup = () => {
               />
             </div>
             <div className="mt-3 flex justify-center ">
+              {/* password */}
+
               <button
                 type="submit"
                 className="px-3 py-3 rounded text-white bg-green-600 hover:bg-green-400"

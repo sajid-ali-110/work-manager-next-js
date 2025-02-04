@@ -9,7 +9,7 @@ const Login = () => {
     email: "",
     password: "",
   });
-
+  // dsaadmakldja
   const loginDataSubmited = (e) => {
     e.preventDefault();
     console.log(loginData);

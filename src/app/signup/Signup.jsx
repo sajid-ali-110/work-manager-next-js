@@ -178,19 +178,18 @@ const Signup = () => {
             <div className="mt-3 flex justify-center ">
               <button
                 type="submit"
-                className="px-3 py-3 rounded text-white bg-green-600 hover:bg-green-400"
+                className="px-7 py-3 rounded text-white bg-green-600 hover:bg-green-400"
               >
                 Signup
               </button>
               <button
                 onClick={resetForm}
                 type="button"
-                className="px-3 py-3 ms-3 rounded text-white bg-orange-600 hover:bg-orange-400"
+                className="px-7 py-3 ms-3 rounded text-white bg-orange-600 hover:bg-orange-400"
               >
                 Reset
               </button>
             </div>
-            {/* {JSON.stringify(data)} */}
           </form>
         </div>
       </div>

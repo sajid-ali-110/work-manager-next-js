@@ -22,7 +22,6 @@ const Signup = () => {
       toast.warning("Name is required!", {
         position: "top-center",
       });
-
       return;
     }
     if (data.password.trim() === "" || data.name == null) {
@@ -46,14 +45,32 @@ const Signup = () => {
       toast.success("User is registered!!", {
         position: "top-center",
       });
+      setData({
+        name: "",
+        email: "",
+        password: "",
+        about: "",
+        profileURL:
+          "https://media.istockphoto.com/id/1327592449/vector/default-avatar-photo-placeholder-icon-grey-profile-picture-business-man.jpg?s=612x612&w=0&k=20&c=yqoos7g9jmufJhfkbQsk-mdhKEsih6Di4WZ66t_ib7I=",
+      });
     } catch (error) {
       console.log(error);
-      toast.error("Signup error", {
+      console.log(error.response.data.message);
+      toast.error("Signup error!! " + error.response.data.message, {
         position: "top-center",
       });
     }
   };
-
+  const resetForm = () => {
+    setData({
+      name: "",
+      email: "",
+      password: "",
+      about: "",
+      profileURL:
+        "https://media.istockphoto.com/id/1327592449/vector/default-avatar-photo-placeholder-icon-grey-profile-picture-business-man.jpg?s=612x612&w=0&k=20&c=yqoos7g9jmufJhfkbQsk-mdhKEsih6Di4WZ66t_ib7I=",
+    });
+  };
   return (
     <div className="grid grid-cols-12">
       <div className="col-span-4 col-start-5">
@@ -113,8 +130,6 @@ const Signup = () => {
                 value={data.email}
               />
             </div>
-
-            {/* password */}
             <div className="mt-3">
               <label
                 htmlFor="password"
@@ -122,8 +137,6 @@ const Signup = () => {
               >
                 Password
               </label>
-              {/* password */}
-
               <input
                 type="password"
                 placeholder="Enter Yor password"
@@ -146,8 +159,6 @@ const Signup = () => {
               >
                 About
               </label>
-              {/* password */}
-
               <textarea
                 type="text"
                 placeholder="Enter About Your Self"
@@ -165,20 +176,20 @@ const Signup = () => {
               />
             </div>
             <div className="mt-3 flex justify-center ">
-              {/* password */}
-
               <button
                 type="submit"
                 className="px-3 py-3 rounded text-white bg-green-600 hover:bg-green-400"
               >
                 Signup
               </button>
-              <button className="px-3 py-3 ms-3 rounded text-white bg-orange-600 hover:bg-orange-400">
+              <button
+                onClick={resetForm}
+                type="button"
+                className="px-3 py-3 ms-3 rounded text-white bg-orange-600 hover:bg-orange-400"
+              >
                 Reset
               </button>
             </div>
-            {/* {JSON.stringify(data)} */}
-            {/* {JSON.stringify(data)} */}
             {/* {JSON.stringify(data)} */}
           </form>
         </div>

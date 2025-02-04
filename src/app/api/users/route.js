@@ -50,7 +50,7 @@ export async function POST(request) {
     console.error("Error creating user:", error.message);
     return NextResponse.json(
       {
-        message: "Failed to create user",
+        message: "Failed to create userrrrrrrrr",
         success: false,
       },
       {

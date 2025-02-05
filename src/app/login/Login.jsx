@@ -3,14 +3,17 @@ import React, { useState } from "react";
 import SignupBanner from "../../assets/signup.svg";
 import Image from "next/image";
 import { toast } from "react-toastify";
+import { NextResponse } from "next/server";
+import { login } from "@/services/userService";
+import { useRouter } from "next/navigation";
 
 const Login = () => {
+  const router = useRouter();
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
   });
-  // dsaadmakldja
-  const loginDataSubmited = (e) => {
+  const loginDataSubmited = async (e) => {
     e.preventDefault();
     console.log(loginData);
     if (loginData.email.trim() === "" || loginData.password.trim() === "") {
@@ -18,6 +21,20 @@ const Login = () => {
         position: "top-center",
       });
       return;
+    }
+
+    try {
+      const result = await login(loginData);
+      console.log(result);
+      toast.success("logged In!!", {
+        position: "top-center",
+      });
+      router.push("/profile/user");
+    } catch (error) {
+      console.log(error);
+      toast.error(error.response.data.message, {
+        position: "top-center",
+      });
     }
   };
 

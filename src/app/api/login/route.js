@@ -1,9 +1,9 @@
 import { User } from "@/models/user";
 import { NextResponse } from "next/server";
-import bycrypt from "bcrypt";
+import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
-export default async function POST(request) {
+export async function POST(request) {
   const { email, password } = await request.json();
   try {
     // get user
@@ -14,7 +14,7 @@ export default async function POST(request) {
       throw new Error("user not found");
     }
     // password check
-    const matched = bycrypt.compareSync(password, user.password);
+    const matched = bcrypt.compareSync(password, user.password);
     if (!matched) {
       throw new Error("password not matched");
     }
@@ -44,7 +44,7 @@ export default async function POST(request) {
     return NextResponse.json(
       {
         message: error.message,
-        success: flase,
+        success: false,
       },
       {
         status: 500,

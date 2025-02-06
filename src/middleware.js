@@ -3,8 +3,7 @@ import { NextRequest } from "next/server";
 
 // This function can be marked `async` if using `await` inside
 export function middleware(request) {
-  console.log("middleware excuted");
-  //   return NextResponse.redirect(new URL("/home", request.url));
+  // console.log("middleware excuted");
 
   const authToken = request.cookies.get("authToken")?.value;
 
@@ -25,7 +24,7 @@ export function middleware(request) {
       return NextResponse.redirect(new URL("/login", request.url));
     }
   }
-  console.log(authToken);
+  // console.log(authToken);
 }
 
 // See "Matching Paths" below to learn more

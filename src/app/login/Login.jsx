@@ -1,13 +1,16 @@
 "use client";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import SignupBanner from "../../assets/signup.svg";
 import Image from "next/image";
 import { toast } from "react-toastify";
 import { NextResponse } from "next/server";
 import { login } from "@/services/userService";
 import { useRouter } from "next/navigation";
+import UserContext from "@/context/userContext";
 
 const Login = () => {
+  const context = useContext(UserContext);
+
   const router = useRouter();
   const [loginData, setLoginData] = useState({
     email: "",
@@ -29,6 +32,7 @@ const Login = () => {
       toast.success("logged In!!", {
         position: "top-center",
       });
+      context.setUser(result.user);
       router.push("/profile/user");
     } catch (error) {
       console.log(error);

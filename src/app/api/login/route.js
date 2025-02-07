@@ -2,8 +2,10 @@ import { User } from "@/models/user";
 import { NextResponse } from "next/server";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import { connectDB } from "@/helper/db";
 
 export async function POST(request) {
+  connectDB();
   const { email, password } = await request.json();
   try {
     // get user
@@ -27,9 +29,7 @@ export async function POST(request) {
       },
       process.env.JWT_KEY
     );
-
     // create next response-- cookie
-
     const response = NextResponse.json({
       message: "Login Success!!",
       success: true,

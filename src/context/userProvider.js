@@ -15,7 +15,7 @@ const userProvider = ({ children }) => {
         setUser({ ...logUser });
       } catch (error) {
         console.log(error);
-        toast.error("failed to get current user!!");
+        // toast.error("failed to get current user!!");
         setUser(undefined);
       }
     }

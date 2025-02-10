@@ -7,7 +7,10 @@ export function middleware(request) {
 
   const authToken = request.cookies.get("authToken")?.value;
 
-  if (request.nextUrl.pathname === "/api/login") {
+  if (
+    request.nextUrl.pathname === "/api/login" ||
+    request.nextUrl.pathname === "/api/users"
+  ) {
     return;
   }
 
@@ -21,6 +24,18 @@ export function middleware(request) {
     }
   } else {
     if (!authToken) {
+      if (request.nextUrl.pathname.startsWith("/api")) {
+        return new NextResponse.json(
+          {
+            message: "Access Denied !!",
+            success: false,
+          },
+          {
+            status: 401,
+          }
+        );
+      }
+
       return NextResponse.redirect(new URL("/login", request.url));
     }
   }

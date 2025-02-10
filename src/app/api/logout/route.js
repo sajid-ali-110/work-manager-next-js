@@ -6,7 +6,7 @@ export async function POST(request) {
     success: true,
   });
 
-  response.cookies.set("auhtToken", "", {
+  response.cookies.set("authToken", "", {
     expiresIn: new Date(0),
   });
 

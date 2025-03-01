@@ -120,8 +120,8 @@ const AddTask = () => {
                 <option value="none" disabled>
                   ---select status---
                 </option>
-                <option value="Pending">Pending</option>
-                <option value="Complete">Complete</option>
+                <option value="Pending">pending</option>
+                <option value="Complete">complete</option>
               </select>
             </div>
             <div className="flex justify-center mt-4">

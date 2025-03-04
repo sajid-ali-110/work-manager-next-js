@@ -69,7 +69,7 @@ const AddTask = () => {
                 value={task.title}
               />
             </div>
-
+                {/* section title */}
             <div className="mt-4">
               <label
                 for="task_content"
